@@ -1,8 +1,10 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import Data from '../data.json'
+import { FilterContext } from '../context/FilterContext';
 export default function useFetch(){
-     const [data, setData] = useState(Data);
+    // const {filter,setFilter}=useContext(FilterContext)
+    const [data, setData] = useState(Data);
+
     
-    console.log(data)
-return{data}
+    return{data,setData}
 }
