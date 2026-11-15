@@ -9,7 +9,7 @@ export default function ThemeButton(){
         setTheme(theme==='light'?'dark':'light');
     }
     return(
-       <button type='submit' onClick={handleClick}>
+       <button type='submit' onClick={handleClick} >
         {theme==='light'?'Dark Mode':'Light Mode'}
        </button>
     )
