@@ -12,11 +12,24 @@
 
 
 .dark ul li{
-    background-color: black;
+    background-color: rgb(43, 68, 86);
     color:white;
 }
 
 .light ul li{
     background-color:white;
     color:black;
+}
+
+.light select{
+    background-color:white;
+    color:black;
+}
+.dark select{
+     background-color: rgb(34, 51, 62);
+    color:white;
+}
+label{
+    font-weight:500;
+    font-size:14px;
 }

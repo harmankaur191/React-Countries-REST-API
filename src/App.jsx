@@ -8,18 +8,18 @@ import { Route } from "react-router-dom"
 import { Routes } from "react-router-dom"
 import CountryPage from "./components/CountryPage.jsx"
 import './App.css';
+import Searchbar from "./components/Searchbar.jsx"
 
 export default function App() {
 const {theme}=useContext(ThemeContext);
 
-console.log(theme);
   return (
     <FilterContextProvider>
-        <div className={`${theme} flex flex-col p-4 gap-5`}>
+        <div className={`${theme} flex flex-col px-5 gap-5`}>
          <Homepage/>
           <Routes>
-            <Route path='/' element={<><Filter/> <CountriesPage/></> }/>
-          
+            
+            <Route path='/' element={<><Searchbar/><Filter/> <CountriesPage/></> }/>
             <Route path='/country/:alpha2code' element={<CountryPage/>} />
           </Routes>
         </div>

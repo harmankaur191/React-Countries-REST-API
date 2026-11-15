@@ -4,6 +4,7 @@ import back from '../assets/design/white-back.png'
 import blackback from '../assets/design/back.png'
 import { useContext } from "react";
 import { ThemeContext } from "../context/ThemeContext";
+import { Link } from "react-router-dom";
 
 export default function CountryPage() {
     const {theme}= useContext(ThemeContext)
@@ -12,17 +13,18 @@ export default function CountryPage() {
     const { alpha2code } = useParams();
     const country = data.find((c) => c.alpha2Code === alpha2code);
     const languages = country.languages.map(language => language.name).join(',');
+    console.log(country);
    
     return (
-        <div className="flex flex-col gap-10 p-5 min-h-screen">
+        <div className="flex flex-col gap-10 p-5 min-h-screen min-w-fit">
             <div>
-                <button className="shadow-xl shadow-black/50 py-1 px-3 border-1 border-gray-700 rounded-sm flex "><img src={theme === 'light'?blackback:back} className="w-[25px]"/>Back</button>
+               <Link to='/'><button className="shadow-xl shadow-black/50 py-1 px-3 border-1 border-gray-700 rounded-sm flex "><img src={theme === 'light'?blackback:back} className="w-[25px]"/>Back</button></Link> 
             </div>
-            <div className=" grid grid-cols-2 gap-20">
-                <section> <img src={country.flag} /></section>
+            <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-20">
+                <section className="w-[100 vw] p-5"> <img src={country.flag} className="" /></section>
                 <div className="flex flex-col gap-10 p-5">
                     <h1 className="text-2xl font-bold">{country.name}</h1>
-                    <div className="grid grid-cols-2 gap-10">
+                    <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10">
                         <section className="flex flex-col gap-3">
                             <p><label>Native Name: </label>{country.nativeName}</p>
                             <p><label>Population: </label>{country.population}</p>
@@ -36,10 +38,11 @@ export default function CountryPage() {
                             </p>
                         </section>
                     </div>
-                    <div className="flex flex gap-5"><label>Border Countries: </label>
-                    {country.borders.map((bordername)=>{
+                    <div className="flex flex-col sm:flex-row  gap-5"><label>Border Countries: </label>
+                    {(country.borders?.length>0)?
+                    country.borders?.map((bordername)=>{
                         return <button key={bordername} className="shadow-xl shadow-black/50 border-1 border-gray-700 gap-10 px-3 rounded-sm">{bordername}</button>
-                    })
+                    }):<span>none</span>
                        
                     }
                     </div>
