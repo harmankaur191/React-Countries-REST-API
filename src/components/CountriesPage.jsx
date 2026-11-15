@@ -5,13 +5,10 @@ import { Link } from "react-router-dom";
 export default function CountriesPage(){
    const {data} = useFetch();
    const {filter}=useContext(FilterContext);
+   console.log(data);
    const filteredCountries = filter ==='all'?data:
    data.filter((country)=>country.region===filter);
-   const handleClick = (e) =>{
-        const selectedCountry = e.target.key;
-    
-
-   }
+  
     return(
         <div >
             <ul className="text-black grid grid-cols-4 gap-[5vw]">

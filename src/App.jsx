@@ -11,14 +11,15 @@ import './App.css';
 
 export default function App() {
 const {theme}=useContext(ThemeContext);
+
 console.log(theme);
   return (
     <FilterContextProvider>
         <div className={`${theme} flex flex-col p-4 gap-5`}>
-          <Homepage />
-          <Filter />
-          <CountriesPage />
+         <Homepage/>
           <Routes>
+            <Route path='/' element={<><Filter/> <CountriesPage/></> }/>
+          
             <Route path='/country/:alpha2code' element={<CountryPage/>} />
           </Routes>
         </div>
