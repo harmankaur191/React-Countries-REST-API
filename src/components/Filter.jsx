@@ -13,7 +13,7 @@ export default function Filter() {
     }
 
     return (
-        <div className="shadow-lg max-w-fit p-4 shadow-lg shadow-black/50">
+        <div className="shadow-lg max-w-fit p-4 shadow-[0_0_15px_rgba(0,0,0,0.25)]">
             <select id="filter" onChange={handleChange}>
                 <option value='all'>Filter by Region</option>
                 <option value='Africa'>Africa</option>

@@ -16,14 +16,14 @@ export default function CountriesPage(){
    });
  
     return(
-        <div >
-            {filteredCountries.length ===0 ?( <div>
+        <div className="p-5">
+            {filteredCountries.length ===0 ?( <div className="min-h-screen">
                 No match found!
             </div>):
             <ul className="text-black grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[5vw] ">
                 {filteredCountries?.map((country, alpha2Code)=>{
-                   return <li key={alpha2Code} className=" rounded-sm shadow-xl min-h-fit flex flex-col gap-3 min-h-[20vw]"><Link to={`/country/${country.alpha2Code}`}>
-                    {<img src={country.flag} className="min-h-[] object-cover "/>}
+                   return <li key={alpha2Code} className=" rounded-sm shadow-[0_0_15px_rgba(0,0,0,0.25)]  min-h-fit flex flex-col gap-3 min-h-[20vw]"><Link to={`/country/${country.alpha2Code}`}>
+                    {<img src={country.flag} className="min-h-[] object-cover " alt={country.name+'s flag'}/>}
                     <div className="min-w-fit py-2 px-3">
                         <p><b>{country.name}</b></p> 
                    <p><label>Region: </label>{country.region}</p> 
@@ -33,7 +33,6 @@ export default function CountriesPage(){
                     </li>
                 })}
             </ul>}
-
         </div>
     )
 }

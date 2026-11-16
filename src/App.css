@@ -33,3 +33,11 @@ label{
     font-weight:500;
     font-size:14px;
 }
+.dark input:text{
+     background-color: rgb(43, 68, 86);
+    color:white;
+}
+.light input:text{
+     background-color:white;
+    color:black;
+}
