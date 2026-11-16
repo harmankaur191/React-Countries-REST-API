@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import useFetch from "../hooks/useFetch";
+import { SearchContext } from "../context/SearchContext";
 
 export default function Searchbar(){
-    const {data}=useFetch();
-    const [searchItem, setSearchItem] = useState('');
+   
+    const {searchItem, setSearchItem} = useContext(SearchContext);
     const handleChange=(e)=>{
         const searchInput = e.target.value;
         console.log(searchInput);

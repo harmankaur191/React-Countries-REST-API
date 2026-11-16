@@ -2,16 +2,25 @@ import { useContext } from "react";
 import useFetch from "../hooks/useFetch"
 import { FilterContext } from "../context/FilterContext";
 import { Link } from "react-router-dom";
+import { SearchContext } from "../context/SearchContext";
 export default function CountriesPage(){
    const {data} = useFetch();
    const {filter}=useContext(FilterContext);
+   const {searchItem} = useContext(SearchContext);
   
-   const filteredCountries = filter ==='all'?data:
-   data.filter((country)=>country.region===filter);
-  
+   const filteredCountries = data.filter((country)=>{
+    const matchesRegion =!filter || filter==='all'||country.region?.toLowerCase()===filter.toLowerCase();
+    const matchesSearch = !searchItem || country.name.toLowerCase().includes(searchItem.toLowerCase());
+
+    return matchesRegion && matchesSearch;
+   });
+ 
     return(
         <div >
-            <ul className="text-black grid grid-cols-1 sm:grid-cols-2 md:grid-cols3 lg:grid-cols-4 gap-[5vw] ">
+            {filteredCountries.length ===0 ?( <div>
+                No match found!
+            </div>):
+            <ul className="text-black grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-[5vw] ">
                 {filteredCountries?.map((country, alpha2Code)=>{
                    return <li key={alpha2Code} className=" rounded-sm shadow-xl min-h-fit flex flex-col gap-3 min-h-[20vw]"><Link to={`/country/${country.alpha2Code}`}>
                     {<img src={country.flag} className="min-h-[] object-cover "/>}
@@ -23,7 +32,7 @@ export default function CountriesPage(){
                    </Link>
                     </li>
                 })}
-            </ul>
+            </ul>}
 
         </div>
     )

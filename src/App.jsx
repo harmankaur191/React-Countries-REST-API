@@ -9,20 +9,23 @@ import { Routes } from "react-router-dom"
 import CountryPage from "./components/CountryPage.jsx"
 import './App.css';
 import Searchbar from "./components/Searchbar.jsx"
+import {SearchProvider} from './context/SearchContext.jsx'
 
 export default function App() {
 const {theme}=useContext(ThemeContext);
 
   return (
     <FilterContextProvider>
-        <div className={`${theme} flex flex-col px-5 gap-5`}>
+      <SearchProvider>
+      <div className={`${theme} flex flex-col px-5 gap-5`}>
          <Homepage/>
           <Routes>
-            
             <Route path='/' element={<><Searchbar/><Filter/> <CountriesPage/></> }/>
             <Route path='/country/:alpha2code' element={<CountryPage/>} />
           </Routes>
         </div>
+      </SearchProvider>
+        
     </FilterContextProvider>
   )
 }
